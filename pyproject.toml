@@ -1,0 +1,46 @@
+[build-system]
+requires = ["uv-build"]
+build-backend = "uv_build"
+
+[project]
+name = "cml-driver"
+version = "0.1.0"
+license = "BSD-2-Clause AND LicenseRef-Proprietary"
+license-files = ["LICENSE"]
+authors = [{ name = "Joe Clarke", email = "jclarke@cisco.com" }]
+description = "Cisco Modeling Labs (CML) MCP Server"
+requires-python = ">=3.12"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "httpx",
+    "fastmcp>=2.13.1",
+    "fastapi",
+    "pydantic_strict_partial",
+    "typer",
+    "virl2_client",
+    "pyyaml>=6.0.3",
+]
+optional-dependencies = { "pyats" = [
+    "pyats",
+    "genie",
+] }
+
+[project.scripts]
+mcp-sentinel = "cml_driver.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/xorrkaz/cml-mcp"
+Issues = "https://github.com/xorrkaz/cml-mcp/issues"
+
+[tool.black]
+line-length = 140
+
+[tool.uv.sources]
+cml-driver = { workspace = true }
+
+[dependency-groups]
+dev = ["pytest"]

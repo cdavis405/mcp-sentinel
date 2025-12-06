@@ -1,0 +1,60 @@
+lab:
+  title: Sentinel Enterprise V1
+  description: "Automated Hub & Spoke Topology with Server Block"
+  notes: "Managed by MCP-Sentinel. Do not edit manually."
+
+nodes:
+  - id: n0
+    label: HQ-EDGE-RTR
+    node_definition: csr1000v
+    x: 0
+    y: 0
+    configuration: hostname HQ-EDGE-RTR
+
+  - id: n1
+    label: HQ-CORE-SW
+    node_definition: iosvl2
+    x: 0
+    y: 200
+    configuration: hostname HQ-CORE-SW
+
+  - id: n2
+    label: BR01-RTR
+    node_definition: csr1000v
+    x: 300
+    y: 0
+    configuration: hostname BR01-RTR
+
+  - id: n3
+    label: BR01-ACCESS-SW
+    node_definition: iosvl2
+    x: 300
+    y: 200
+    configuration: hostname BR01-ACCESS-SW
+
+  - id: n4
+    label: EXT-CONN
+    node_definition: external_connector
+    x: -200
+    y: 0
+
+links:
+  # HQ Edge to Core (Router on a Stick or L3 Link)
+  - id: l1
+    i1: n0
+    i2: n1
+  
+  # HQ Edge to Branch Router (Simulated WAN)
+  - id: l2
+    i1: n0
+    i2: n2
+  
+  # Branch Router to Access Switch
+  - id: l3
+    i1: n2
+    i2: n3
+
+  # HQ Edge to External Internet (Bridged to your home network)
+  - id: l4
+    i1: n0
+    i2: n4

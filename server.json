@@ -1,0 +1,67 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.xorrkaz/cml-mcp",
+  "title": "Cisco Modeling Labs (CML)",
+  "description": "An MCP server that provides access to common Cisco Modeling Labs (CML) operations.",
+  "repository": {
+    "url": "https://github.com/xorrkaz/cml-mcp",
+    "source": "github"
+  },
+  "version": "0.14.3",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "cml-mcp",
+      "version": "0.14.3",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "URL for the CML Server",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": false,
+          "name": "CML_URL"
+        },
+        {
+          "description": "Username for CML authentication",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": false,
+          "name": "CML_USERNAME"
+        },
+        {
+          "description": "Password for CML authentication",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "CML_PASSWORD"
+        },
+        {
+          "description": "Username for authentication to devices running in CML",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "PYATS_USERNAME"
+        },
+        {
+          "description": "Password for authentication to devices running in CML",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true,
+          "name": "PYATS_PASSWORD"
+        },
+        {
+          "description": "Enable password for authentication to devices running in CML",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true,
+          "name": "PYATS_AUTH_PASS"
+        }
+      ]
+    }
+  ]
+}
