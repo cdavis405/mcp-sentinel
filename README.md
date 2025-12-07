@@ -1,34 +1,55 @@
 # MCP Sentinel
 
-> **LLM-Orchestrated End-to-End Enterprise IT Infrastructure**
+> **Zero-Touch Enterprise Infrastructure. One Conversation.**
 
 ## Overview
 
-**MCP Sentinel** is a comprehensive demonstration of architecting and deploying a complete enterprise IT environment using Large Language Models. Built on [xorrkaz/cml-mcp](https://github.com/xorrkaz/cml-mcp) as a foundation, this project goes far beyond simple network topology—it encompasses **every layer** of enterprise IT, from Windows Group Policy to SD-WAN, from RADIUS authentication to employee laptop provisioning.
+**MCP Sentinel** isn't just automation—it's a full-stack enterprise IT environment, architected, deployed, and operated entirely through conversation with an LLM. No clicking through GUIs. No copy-pasting configs. No Terraform plans to review. You describe what you want, and it builds it.
+
+Built on [xorrkaz/cml-mcp](https://github.com/xorrkaz/cml-mcp) as a foundation, MCP Sentinel pushes the boundaries of what's possible when you combine Large Language Models with enterprise infrastructure. From **Windows Group Policy to SD-WAN**, from **RADIUS authentication to certificate auto-enrollment**, from **employee laptop provisioning to Day 2 troubleshooting**—this project covers the entire stack.
 
 ### The Vision
 
-This project will demonstrate complete end-to-end enterprise IT orchestration through conversational AI:
+Complete enterprise IT. Every layer. Every integration. One conversation.
 
 | Layer | What We're Building |
-|-------|--------------------|
-| **Identity & Access** | Active Directory, Group Policy, RADIUS, 802.1X |
-| **Network Access Control** | Cisco ISE for authentication, authorization, posture |
-| **Network Infrastructure** | SD-WAN, MPLS, routing, switching, wireless |
-| **Security** | Firewalls, segmentation, policy enforcement |
-| **Endpoint** | Employee laptop onboarding, certificate enrollment |
-| **Management** | Monitoring, logging, automation |
+|-------|---------------------|
+| **Identity & Access** | Active Directory, Group Policy, RADIUS, 802.1X, PKI |
+| **Network Access Control** | Cisco ISE: authentication, authorization, posture, profiling |
+| **Network Infrastructure** | SD-WAN (Cisco vManage/vEdge), MPLS, routing, switching, wireless |
+| **Security** | Firewalls, TrustSec, micro-segmentation, zone-based policies |
+| **Endpoint** | Certificate enrollment, laptop onboarding, compliance validation |
+| **Operations** | LLM-driven troubleshooting, drift detection, automated remediation |
 
-**The goal:** An employee gets issued a laptop. They connect to the network. RADIUS authenticates them against Active Directory. ISE applies the appropriate access policy. Group Policy pushes their configurations. The SD-WAN optimizes their traffic. Every single step—automated and orchestrated by an LLM.
+**The scenario:** A new employee receives their laptop. They plug into the network. 802.1X triggers EAP-TLS. RADIUS validates their certificate against Active Directory. ISE returns their authorization profile—VLAN, SGT, downloadable ACL. Group Policy applies their desktop configuration. SD-WAN routes their Teams call over the optimal path. And when something breaks? You ask the LLM to figure out why.
+
+---
+
+## 🎯 The Challenge: Bleeding-Edge Goals
+
+These aren't just features—they're challenges. Some of these push into territory where documentation is sparse and success isn't guaranteed. That's the point.
+
+| Goal | Difficulty | Why It's Hard |
+|------|------------|---------------|
+| **Full 802.1X with EAP-TLS** | 🔥🔥🔥 | Certificate-based auth requires CA, templates, auto-enrollment, supplicant config—all orchestrated |
+| **ISE + TrustSec SGTs** | 🔥🔥🔥🔥 | Dynamic segmentation based on identity; requires ISE, switch config, and matrix policies |
+| **SD-WAN Fabric from Scratch** | 🔥🔥🔥🔥 | vManage, vBond, vSmart, certificates, OMP, control policies—all configured via LLM |
+| **Zero-Touch Employee Onboarding** | 🔥🔥🔥🔥🔥 | The holy grail: laptop connects → authenticated → authorized → configured → optimized |
+| **LLM-Driven Troubleshooting** | 🔥🔥🔥🔥 | "Why can't Sarah authenticate?" → LLM queries ISE, AD, switch, returns root cause |
+| **Cross-Domain Policy Correlation** | 🔥🔥🔥🔥🔥 | Trace a policy decision across AD → ISE → Switch → Firewall → SD-WAN |
+
+> **The benchmark:** If an experienced enterprise architect would need a week to set this up manually, MCP Sentinel should do it in a conversation.
+
+---
 
 ### Foundation: cml-mcp
 
 This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-mcp) by [@xorrkaz](https://github.com/xorrkaz), which provides the core MCP server implementation for Cisco Modeling Labs. We extend this foundation with:
 
 - **Enterprise topology templates** - Pre-built designs for common enterprise architectures
-- **Multi-server orchestration** - Coordinate across multiple MCP servers as needed
+- **Multi-system orchestration** - Coordinate across AD, ISE, network devices, and more
 - **Complex dependency management** - Handle startup ordering and service dependencies
-- **Infrastructure-as-conversation** - Natural language to infrastructure deployment
+- **Infrastructure-as-conversation** - Natural language to production-ready infrastructure
 
 ## Core Features (from cml-mcp)
 
@@ -41,23 +62,27 @@ This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-
 ## Extended Features (MCP Sentinel)
 
 - **Enterprise Topology Deployment:** Deploy complete enterprise networks from YAML definitions
-- **Windows Server Integration:** Domain controllers, DNS, DHCP, and Active Directory
-- **Cisco ISE Deployment:** Identity Services Engine with full policy configuration
-- **Network Services:** Complete network infrastructure including routing, switching, and security
+- **Windows Server Integration:** Domain controllers, DNS, DHCP, Group Policy, Enterprise CA
+- **Cisco ISE Deployment:** Full ISE configuration—policies, profiling, posture, RADIUS
+- **SD-WAN Orchestration:** vManage, vBond, vSmart, and edge deployment
+- **End-to-End Validation:** Automated testing of the complete employee experience
 
 ---
 
 ## 🚧 Current Status
 
-> **Active Development** - This project is under active development. Core MCP functionality from cml-mcp is working. Enterprise extensions are being built.
+> **Active Development** — Building toward the bleeding-edge goals. Core infrastructure working. The hard stuff is next.
 
-| Component | Status |
-|-----------|--------|
-| CML MCP Server (base) | ✅ Working |
-| Lab Topology Deployment | 🔄 In Progress |
-| Enterprise Templates | 📋 Planned |
-| ISE Integration | 📋 Planned |
-| Domain Controller Automation | 📋 Planned |
+| Component | Status | Notes |
+|-----------|--------|-------|
+| CML MCP Server (base) | ✅ Working | Foundation from cml-mcp |
+| Lab Topology Deployment | 🔄 In Progress | YAML-based definitions |
+| Active Directory | 📋 Planned | DCs, DNS, DHCP, GPOs |
+| Enterprise CA + 802.1X | 🎯 Challenge | Certificate-based authentication |
+| Cisco ISE | 🎯 Challenge | Full NAC deployment |
+| SD-WAN Fabric | 🎯 Challenge | Complete overlay network |
+| Zero-Touch Onboarding | 🔥 Bleeding Edge | The ultimate validation |
+| LLM Troubleshooting | � Bleeding Edge | Day 2 operations via conversation |
 
 ---
 
