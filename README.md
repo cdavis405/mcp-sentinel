@@ -1,22 +1,25 @@
 # MCP Sentinel
 
-> **LLM-Driven Enterprise Network Topology Deployment**
+> **LLM-Orchestrated End-to-End Enterprise IT Infrastructure**
 
 ## Overview
 
-**MCP Sentinel** is an ambitious project to deploy complete enterprise network infrastructures using Large Language Models (LLMs). Built on top of [xorrkaz/cml-mcp](https://github.com/xorrkaz/cml-mcp) as a foundation, MCP Sentinel extends the Model Context Protocol (MCP) capabilities to orchestrate full-scale network deployments in [Cisco Modeling Labs (CML)](https://www.cisco.com/c/en/us/products/cloud-systems-management/modeling-labs/index.html).
+**MCP Sentinel** is a comprehensive demonstration of architecting and deploying a complete enterprise IT environment using Large Language Models. Built on [xorrkaz/cml-mcp](https://github.com/xorrkaz/cml-mcp) as a foundation, this project goes far beyond simple network topology—it encompasses **every layer** of enterprise IT, from Windows Group Policy to SD-WAN, from RADIUS authentication to employee laptop provisioning.
 
 ### The Vision
 
-Imagine describing your entire enterprise network in natural language and having an LLM deploy it for you:
+This project will demonstrate complete end-to-end enterprise IT orchestration through conversational AI:
 
-- **Domain Controllers** - Active Directory infrastructure
-- **Cisco ISE** - Identity Services Engine for network access control
-- **Network Fabric** - Routers, switches, firewalls, and connectivity
-- **Security Stack** - Complete security infrastructure
-- **Monitoring & Management** - Full observability stack
+| Layer | What We're Building |
+|-------|--------------------|
+| **Identity & Access** | Active Directory, Group Policy, RADIUS, 802.1X |
+| **Network Access Control** | Cisco ISE for authentication, authorization, posture |
+| **Network Infrastructure** | SD-WAN, MPLS, routing, switching, wireless |
+| **Security** | Firewalls, segmentation, policy enforcement |
+| **Endpoint** | Employee laptop onboarding, certificate enrollment |
+| **Management** | Monitoring, logging, automation |
 
-All orchestrated through conversational AI.
+**The goal:** An employee gets issued a laptop. They connect to the network. RADIUS authenticates them against Active Directory. ISE applies the appropriate access policy. Group Policy pushes their configurations. The SD-WAN optimizes their traffic. Every single step—automated and orchestrated by an LLM.
 
 ### Foundation: cml-mcp
 
@@ -104,88 +107,134 @@ This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-
 - [x] Basic lab deployment via MCP
 - [x] YAML topology definitions
 
-### Phase 2: Enterprise Core (Current)
-- [ ] **Datacenter/Cloud Simulation**
-  - Domain Controllers (Windows Server)
-  - DNS/DHCP infrastructure
-  - Cisco ISE deployment
-  - Core routing & switching
-  - Firewall integration
+### Phase 2: Identity & Access (Current)
+- [ ] **Active Directory Infrastructure**
+  - Windows Server domain controllers
+  - DNS/DHCP integrated with AD
+  - Group Policy Objects (GPOs)
+  - Organizational Units structure
+  - User/group provisioning
 
-- [ ] **WAN Simulation**
-  - MPLS backbone
-  - SD-WAN overlay options
-  - Internet simulation
-  - WAN edge routers
+- [ ] **Certificate Services**
+  - Enterprise CA deployment
+  - Certificate templates for 802.1X
+  - Auto-enrollment configuration
 
-### Phase 3: Branch Offices
-- [ ] **Branch Templates**
-  - Small branch (router + switch + AP)
-  - Medium branch (redundant routing)
-  - Large branch (local services)
-  
-- [ ] **Branch Services**
-  - Local Active Directory sites
-  - Branch firewalls
-  - Wireless controllers
+### Phase 3: Network Access Control
+- [ ] **Cisco ISE Deployment**
+  - ISE node deployment and configuration
+  - RADIUS server setup
+  - 802.1X authentication policies
+  - Authorization profiles
+  - Posture assessment policies
 
-### Phase 4: Full Enterprise
-- [ ] **Multi-Branch Deployment**
-  - Deploy 3-10+ branches from natural language
-  - Automatic WAN connectivity
-  - Consistent policy deployment
+- [ ] **Network Authentication**
+  - Wired 802.1X on switches
+  - Wireless 802.1X on controllers
+  - MAB fallback for legacy devices
+  - Guest access portal
 
-- [ ] **Advanced Services**
-  - Cisco DNA Center integration
-  - Monitoring stack (Prometheus/Grafana)
-  - Log aggregation
-  - Network automation (Ansible integration)
+### Phase 4: Network Infrastructure
+- [ ] **SD-WAN Fabric**
+  - vManage, vBond, vSmart controllers
+  - vEdge/cEdge deployment at sites
+  - Overlay tunnel configuration
+  - Application-aware routing
 
-### Phase 5: Intelligence
-- [ ] **LLM-Driven Operations**
+- [ ] **Underlay Network**
+  - MPLS backbone simulation
+  - Internet transport simulation
+  - Routing protocols (OSPF/BGP)
+  - QoS policies
+
+- [ ] **Branch Infrastructure**
+  - Branch routers and switches
+  - Wireless controllers and APs
+  - Local DHCP/DNS relay
+
+### Phase 5: Security & Segmentation
+- [ ] **Firewall Integration**
+  - Perimeter firewalls
+  - Internal segmentation
+  - Zone-based policies
+
+- [ ] **Network Segmentation**
+  - VLAN design and implementation
+  - SGT (Security Group Tags) with TrustSec
+  - Micro-segmentation policies
+
+### Phase 6: Employee Onboarding Flow
+- [ ] **Complete End-to-End Flow**
+  - Employee laptop issued → connects to network
+  - 802.1X authentication via EAP-TLS
+  - RADIUS validates against Active Directory
+  - ISE returns authorization (VLAN, SGT, ACL)
+  - Group Policy applies user configurations
+  - SD-WAN optimizes application traffic
+  - Full connectivity validated
+
+### Phase 7: Day 2 Operations
+- [ ] **LLM-Driven Management**
   - Troubleshooting via conversation
+  - "Why can't this user authenticate?"
   - Configuration drift detection
   - Automated remediation
-  - "What-if" scenario modeling
+  - Change management workflows
 
 ---
 
 ## 💬 Example Prompts
 
-Here are examples of what you'll be able to ask MCP Sentinel:
+Here are examples of what MCP Sentinel will enable:
 
-### Enterprise Deployment
+### Full Enterprise Deployment
 ```
-"Deploy a complete enterprise network with:
-- A datacenter with 2 domain controllers, ISE, and a core switch stack
-- An MPLS WAN connecting 3 branch offices
-- Each branch should have a router, access switch, and wireless AP
-- Use OSPF for routing and configure basic security policies"
-```
-
-### Branch Office Addition
-```
-"Add a new medium-sized branch office to my enterprise lab:
-- Location: Chicago
-- Connect it to the existing MPLS WAN
-- Include redundant routers, a switch stack, and 2 APs
-- Replicate the security policies from the New York branch"
+"Build me a complete enterprise environment:
+- Headquarters with 2 domain controllers, enterprise CA, and Cisco ISE
+- SD-WAN fabric with vManage, vBond, and vSmart
+- 3 branch offices connected via SD-WAN
+- 802.1X authentication on all wired and wireless ports
+- Configure Group Policy for employee laptops
+- Set up the complete employee onboarding flow"
 ```
 
-### Datacenter Expansion
+### Identity Infrastructure
 ```
-"I need to add a DR site to my enterprise network:
-- Deploy a secondary domain controller
-- Add a standby ISE node
-- Configure site-to-site VPN as backup to MPLS
-- Set up basic replication between sites"
+"Deploy the identity stack:
+- Primary and secondary domain controllers
+- Configure DNS and DHCP with AD integration
+- Set up an Enterprise CA for certificate-based authentication
+- Create OUs for IT, Engineering, Sales, and Contractors
+- Build GPOs for each department with appropriate restrictions"
 ```
 
-### Troubleshooting (Future)
+### Network Access Control
 ```
-"The Chicago branch can't reach the domain controller. 
-Can you check the routing, verify OSPF neighbors, 
-and test connectivity along the path?"
+"Configure ISE for network access control:
+- Deploy ISE in a 2-node cluster
+- Set up RADIUS authentication for all switches
+- Create policies: employees get full access, 
+  contractors get internet-only, guests hit captive portal
+- Enable posture assessment - block non-compliant endpoints
+- Configure profiling to identify device types"
+```
+
+### Employee Experience
+```
+"Walk me through the employee onboarding flow:
+- A new employee's laptop connects to the network
+- Show me how 802.1X authenticates them against AD
+- Verify ISE applies the correct authorization policy
+- Confirm Group Policy pushes their configurations
+- Test that their traffic routes correctly over SD-WAN"
+```
+
+### Troubleshooting (Day 2)
+```
+"Sarah from Engineering can't connect to the network. 
+Check ISE for her authentication attempts, verify her 
+AD account status, check if her certificate is valid, 
+and tell me what's blocking her access."
 ```
 
 ### Current Working Examples (via cml-mcp)
