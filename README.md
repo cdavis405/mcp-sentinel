@@ -1,21 +1,202 @@
-# Model Context Protocol (MCP) Server for Cisco Modeling Labs (CML)
+# MCP Sentinel
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/xorrkaz/cml-mcp)
-
-mcp-name: io.github.xorrkaz/cml-mcp
+> **LLM-Driven Enterprise Network Topology Deployment**
 
 ## Overview
 
-`cml-mcp` is a server implementation of the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) designed
-for [Cisco Modeling Labs (CML)](https://www.cisco.com/c/en/us/products/cloud-systems-management/modeling-labs/index.html). It is built using [FastMCP 2.0](https://gofastmcp.com/getting-started/welcome) and designed to provide a set of tools for LLM apps like Claude Desktop, Claude Code, and Cursor to interact with CML.
+**MCP Sentinel** is an ambitious project to deploy complete enterprise network infrastructures using Large Language Models (LLMs). Built on top of [xorrkaz/cml-mcp](https://github.com/xorrkaz/cml-mcp) as a foundation, MCP Sentinel extends the Model Context Protocol (MCP) capabilities to orchestrate full-scale network deployments in [Cisco Modeling Labs (CML)](https://www.cisco.com/c/en/us/products/cloud-systems-management/modeling-labs/index.html).
 
-## Features
+### The Vision
 
-- **Create Lab Topologies:** Tool for create new labs and define network topologies.
-- **Query Status:** Tools to retrieve status information for labs, nodes, and the CML server itself.
-- **Control Labs and Nodes:** Tools to start and stop labs or individual nodes as needed.
-- **Manage CML Users and Groups** Tools to list, create, and delete local users and groups.
-- **Run Commands on Devices:** Using [PyATS](https://developer.cisco.com/pyats/), MCP clients can execute commands on virtual devices within CML labs.
+Imagine describing your entire enterprise network in natural language and having an LLM deploy it for you:
+
+- **Domain Controllers** - Active Directory infrastructure
+- **Cisco ISE** - Identity Services Engine for network access control
+- **Network Fabric** - Routers, switches, firewalls, and connectivity
+- **Security Stack** - Complete security infrastructure
+- **Monitoring & Management** - Full observability stack
+
+All orchestrated through conversational AI.
+
+### Foundation: cml-mcp
+
+This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-mcp) by [@xorrkaz](https://github.com/xorrkaz), which provides the core MCP server implementation for Cisco Modeling Labs. We extend this foundation with:
+
+- **Enterprise topology templates** - Pre-built designs for common enterprise architectures
+- **Multi-server orchestration** - Coordinate across multiple MCP servers as needed
+- **Complex dependency management** - Handle startup ordering and service dependencies
+- **Infrastructure-as-conversation** - Natural language to infrastructure deployment
+
+## Core Features (from cml-mcp)
+
+- **Create Lab Topologies:** Tools for creating new labs and defining network topologies
+- **Query Status:** Tools to retrieve status information for labs, nodes, and the CML server
+- **Control Labs and Nodes:** Tools to start and stop labs or individual nodes as needed
+- **Manage CML Users and Groups:** Tools to list, create, and delete local users and groups
+- **Run Commands on Devices:** Using [PyATS](https://developer.cisco.com/pyats/), execute commands on virtual devices within CML labs
+
+## Extended Features (MCP Sentinel)
+
+- **Enterprise Topology Deployment:** Deploy complete enterprise networks from YAML definitions
+- **Windows Server Integration:** Domain controllers, DNS, DHCP, and Active Directory
+- **Cisco ISE Deployment:** Identity Services Engine with full policy configuration
+- **Network Services:** Complete network infrastructure including routing, switching, and security
+
+---
+
+## 🚧 Current Status
+
+> **Active Development** - This project is under active development. Core MCP functionality from cml-mcp is working. Enterprise extensions are being built.
+
+| Component | Status |
+|-----------|--------|
+| CML MCP Server (base) | ✅ Working |
+| Lab Topology Deployment | 🔄 In Progress |
+| Enterprise Templates | 📋 Planned |
+| ISE Integration | 📋 Planned |
+| Domain Controller Automation | 📋 Planned |
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              LLM (Claude, etc.)                             │
+│                    "Deploy my enterprise network with 3 branches"           │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              MCP Sentinel                                   │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────────────┐  │
+│  │ Topology Engine │  │ Template Library │  │ Deployment Orchestrator   │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           cml-mcp (Foundation)                              │
+│              MCP Server Implementation for Cisco Modeling Labs              │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         Cisco Modeling Labs (CML)                           │
+│                                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
+│  │ Datacenter   │  │     WAN      │  │  Branch 1    │  │  Branch N    │    │
+│  │  ┌────────┐  │  │  ┌────────┐  │  │  ┌────────┐  │  │  ┌────────┐  │    │
+│  │  │  ISE   │  │  │  │ MPLS   │  │  │  │Router  │  │  │  │Router  │  │    │
+│  │  │   DC   │  │  │  │ SD-WAN │  │  │  │Switch  │  │  │  │Switch  │  │    │
+│  │  │  FW    │  │  │  └────────┘  │  │  │  AP    │  │  │  │  AP    │  │    │
+│  │  └────────┘  │  │              │  │  └────────┘  │  │  └────────┘  │    │
+│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘    │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🗺️ Roadmap
+
+### Phase 1: Foundation ✅
+- [x] Fork and customize cml-mcp
+- [x] Basic lab deployment via MCP
+- [x] YAML topology definitions
+
+### Phase 2: Enterprise Core (Current)
+- [ ] **Datacenter/Cloud Simulation**
+  - Domain Controllers (Windows Server)
+  - DNS/DHCP infrastructure
+  - Cisco ISE deployment
+  - Core routing & switching
+  - Firewall integration
+
+- [ ] **WAN Simulation**
+  - MPLS backbone
+  - SD-WAN overlay options
+  - Internet simulation
+  - WAN edge routers
+
+### Phase 3: Branch Offices
+- [ ] **Branch Templates**
+  - Small branch (router + switch + AP)
+  - Medium branch (redundant routing)
+  - Large branch (local services)
+  
+- [ ] **Branch Services**
+  - Local Active Directory sites
+  - Branch firewalls
+  - Wireless controllers
+
+### Phase 4: Full Enterprise
+- [ ] **Multi-Branch Deployment**
+  - Deploy 3-10+ branches from natural language
+  - Automatic WAN connectivity
+  - Consistent policy deployment
+
+- [ ] **Advanced Services**
+  - Cisco DNA Center integration
+  - Monitoring stack (Prometheus/Grafana)
+  - Log aggregation
+  - Network automation (Ansible integration)
+
+### Phase 5: Intelligence
+- [ ] **LLM-Driven Operations**
+  - Troubleshooting via conversation
+  - Configuration drift detection
+  - Automated remediation
+  - "What-if" scenario modeling
+
+---
+
+## 💬 Example Prompts
+
+Here are examples of what you'll be able to ask MCP Sentinel:
+
+### Enterprise Deployment
+```
+"Deploy a complete enterprise network with:
+- A datacenter with 2 domain controllers, ISE, and a core switch stack
+- An MPLS WAN connecting 3 branch offices
+- Each branch should have a router, access switch, and wireless AP
+- Use OSPF for routing and configure basic security policies"
+```
+
+### Branch Office Addition
+```
+"Add a new medium-sized branch office to my enterprise lab:
+- Location: Chicago
+- Connect it to the existing MPLS WAN
+- Include redundant routers, a switch stack, and 2 APs
+- Replicate the security policies from the New York branch"
+```
+
+### Datacenter Expansion
+```
+"I need to add a DR site to my enterprise network:
+- Deploy a secondary domain controller
+- Add a standby ISE node
+- Configure site-to-site VPN as backup to MPLS
+- Set up basic replication between sites"
+```
+
+### Troubleshooting (Future)
+```
+"The Chicago branch can't reach the domain controller. 
+Can you check the routing, verify OSPF neighbors, 
+and test connectivity along the path?"
+```
+
+### Current Working Examples (via cml-mcp)
+These work today using the underlying cml-mcp functionality:
+
+- "Create a new CML lab called 'Enterprise Test'"
+- "Add two IOL routers and connect them with a switch"
+- "Start the lab and show me the status of all nodes"
+- "Run 'show ip route' on router1"
+
+---
 
 ## Requirements
 
