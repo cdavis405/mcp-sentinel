@@ -42,6 +42,89 @@ These aren't just features—they're challenges. Some of these push into territo
 
 ---
 
+## 🛡️ Change Management: The Core Philosophy
+
+*Inspired by [The Phoenix Project](https://itrevolution.com/product/the-phoenix-project/).*
+
+Automation without governance is chaos. MCP Sentinel is built on the principle that **no change happens without understanding, visibility, and approval.**
+
+### Every Change. Every Time.
+
+Before any network modification, MCP Sentinel will:
+
+1. **🎯 Blast Radius Analysis** — What could break? Which users, applications, and services are affected?
+2. **📋 Command Preview** — The exact commands that will execute, on which devices, in what order
+3. **⚠️ Risk Assessment** — Quantified risk level with plain-English explanation
+4. **✋ Explicit Confirmation** — Nothing runs until you approve it
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  PROPOSED CHANGE: Update OSPF Area on Chicago Branch Router        │
+├─────────────────────────────────────────────────────────────────────┤
+│  BLAST RADIUS:                                                      │
+│    • 47 users at Chicago branch will lose connectivity for ~30 sec  │
+│    • Voice traffic will failover to backup MPLS path               │
+│    • No impact to other branches                                   │
+├─────────────────────────────────────────────────────────────────────┤
+│  COMMANDS TO EXECUTE:                                               │
+│    router ospf 1                                                    │
+│      no network 10.5.0.0 0.0.255.255 area 0                        │
+│      network 10.5.0.0 0.0.255.255 area 5                           │
+├─────────────────────────────────────────────────────────────────────┤
+│  RISK: MEDIUM                                                       │
+│  Reason: Brief connectivity loss during OSPF reconvergence         │
+├─────────────────────────────────────────────────────────────────────┤
+│  ❓ Proceed with this change? [Yes / No / More Info]               │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### 🔮 The Endgame: Multi-Stakeholder Approval
+
+*This is where it gets interesting.*
+
+The future isn't just you and an AI. It's a **group conversation**—a Slack channel, a Teams chat—where the AI is a participant alongside humans. Everyone who needs to know, knows. Everyone who needs to approve, approves.
+
+**The scenario:**
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  #chicago-network-maintenance                                       │
+├─────────────────────────────────────────────────────────────────────┤
+│  🤖 MCP Sentinel                                                    │
+│  Proposed: Core switch firmware upgrade at Chicago branch           │
+│  Window: Saturday 5:00 AM - 7:00 AM CST                            │
+│  Blast Radius: Full site offline during upgrade (~45 min)          │
+│  Risk: LOW (tested in lab, rollback plan ready)                    │
+│                                                                     │
+│  Awaiting approval from: @chris (IT), @marcus (Site GM)            │
+├─────────────────────────────────────────────────────────────────────┤
+│  👤 Marcus (Site GM)                                                │
+│  What's the risk if we don't do this?                              │
+├─────────────────────────────────────────────────────────────────────┤
+│  🤖 MCP Sentinel                                                    │
+│  Current firmware has 3 known CVEs. Vendor support ends in 60 days.│
+│  Risk of delayed upgrade: MEDIUM-HIGH                              │
+├─────────────────────────────────────────────────────────────────────┤
+│  👤 Marcus (Site GM)                                                │
+│  Approved ✅. Adding @ryker from HR.                                │
+│  @ryker - can you shift the Saturday morning crew to start at 7:30?│
+├─────────────────────────────────────────────────────────────────────┤
+│  👤 Ryker (HR Manager)                                              │
+│  Done. Updated the schedule. You're clear for 5-7 AM.              │
+├─────────────────────────────────────────────────────────────────────┤
+│  👤 Chris (IT Manager)                                              │
+│  Approved ✅                                                        │
+├─────────────────────────────────────────────────────────────────────┤
+│  🤖 MCP Sentinel                                                    │
+│  All approvals received. Change scheduled for Sat 5:00 AM CST.     │
+│  Notifications will be sent 24hr and 1hr before maintenance.       │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**This is where AI agents in group chats become transformative.** The AI isn't just executing—it's facilitating cross-functional coordination, answering stakeholder questions in real-time, and ensuring nothing happens without the right approvals.
+
+> **Status:** Some of this isn't possible yet. Group chat AI agents with multi-party approval workflows are emerging technology. But this is the endgame, and MCP Sentinel is being built with this architecture in mind.
+
 ### Foundation: cml-mcp
 
 This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-mcp) by [@xorrkaz](https://github.com/xorrkaz), which provides the core MCP server implementation for Cisco Modeling Labs. We extend this foundation with:
