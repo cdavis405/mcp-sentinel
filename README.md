@@ -1,3 +1,4 @@
+
 # MCP Sentinel
 
 > **Zero-Touch Enterprise Infrastructure. One Conversation.**
@@ -31,12 +32,12 @@ These aren't just features—they're challenges. Some of these push into territo
 
 | Goal | Difficulty | Why It's Hard |
 |------|------------|---------------|
-| **Full 802.1X with EAP-TLS** | 🔥🔥🔥 | Certificate-based auth requires CA, templates, auto-enrollment, supplicant config—all orchestrated |
-| **ISE + TrustSec SGTs** | 🔥🔥🔥🔥 | Dynamic segmentation based on identity; requires ISE, switch config, and matrix policies |
-| **SD-WAN Fabric from Scratch** | 🔥🔥🔥🔥 | vManage, vBond, vSmart, certificates, OMP, control policies—all configured via LLM |
-| **Zero-Touch Employee Onboarding** | 🔥🔥🔥🔥🔥 | The holy grail: laptop connects → authenticated → authorized → configured → optimized |
-| **LLM-Driven Troubleshooting** | 🔥🔥🔥🔥 | "Why can't Sarah authenticate?" → LLM queries ISE, AD, switch, returns root cause |
-| **Cross-Domain Policy Correlation** | 🔥🔥🔥🔥🔥 | Trace a policy decision across AD → ISE → Switch → Firewall → SD-WAN |
+| **Full 802.1X with EAP-TLS** | 2x🔥 | Certificate-based auth requires CA, templates, auto-enrollment, supplicant config—all orchestrated |
+| **ISE + TrustSec SGTs** | 4x🔥 | Dynamic segmentation based on identity; requires ISE, switch config, and matrix policies |
+| **SD-WAN Fabric from Scratch** | 4x🔥 | vManage, vBond, vSmart, certificates, OMP, control policies—all configured via LLM |
+| **Zero-Touch Employee Onboarding** | 5x🔥 | The holy grail: laptop connects → authenticated → authorized → configured → optimized |
+| **LLM-Driven Troubleshooting** | 4x🔥 | "Why can't Sarah authenticate?" → LLM queries ISE, AD, switch, returns root cause |
+| **Cross-Domain Policy Correlation** | 5x🔥 | Trace a policy decision across AD → ISE → Switch → Firewall → SD-WAN |
 
 > **The benchmark:** If an experienced enterprise architect would need a week to set this up manually, MCP Sentinel should do it in a conversation.
 
@@ -59,22 +60,22 @@ Before any network modification, MCP Sentinel will:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  PROPOSED CHANGE: Update OSPF Area on Chicago Branch Router        │
+│  PROPOSED CHANGE: Update OSPF Area on Chicago Branch Router         │
 ├─────────────────────────────────────────────────────────────────────┤
 │  BLAST RADIUS:                                                      │
 │    • 47 users at Chicago branch will lose connectivity for ~30 sec  │
-│    • Voice traffic will failover to backup MPLS path               │
-│    • No impact to other branches                                   │
+│    • Voice traffic will failover to backup MPLS path                │
+│    • No impact to other branches                                    │
 ├─────────────────────────────────────────────────────────────────────┤
 │  COMMANDS TO EXECUTE:                                               │
 │    router ospf 1                                                    │
-│      no network 10.5.0.0 0.0.255.255 area 0                        │
-│      network 10.5.0.0 0.0.255.255 area 5                           │
+│      no network 10.5.0.0 0.0.255.255 area 0                         │
+│      network 10.5.0.0 0.0.255.255 area 5                            │
 ├─────────────────────────────────────────────────────────────────────┤
 │  RISK: MEDIUM                                                       │
-│  Reason: Brief connectivity loss during OSPF reconvergence         │
+│  Reason: Brief connectivity loss during OSPF reconvergence          │
 ├─────────────────────────────────────────────────────────────────────┤
-│  ❓ Proceed with this change? [Yes / No / More Info]               │
+│      Proceed with this change? [Yes / No / More Info]               │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -92,32 +93,32 @@ The future isn't just you and an AI. It's a **group conversation**—a Slack cha
 ├─────────────────────────────────────────────────────────────────────┤
 │  🤖 MCP Sentinel                                                    │
 │  Proposed: Core switch firmware upgrade at Chicago branch           │
-│  Window: Saturday 5:00 AM - 7:00 AM CST                            │
-│  Blast Radius: Full site offline during upgrade (~45 min)          │
-│  Risk: LOW (tested in lab, rollback plan ready)                    │
+│  Window: Saturday 5:00 AM - 7:00 AM CST                             │
+│  Blast Radius: Full site offline during upgrade (~45 min)           │
+│  Risk: LOW (tested in lab, rollback plan ready)                     │
 │                                                                     │
-│  Awaiting approval from: @chris (IT), @marcus (Site GM)            │
+│  Awaiting approval from: @chris (IT), @marcus (Site GM)             │
 ├─────────────────────────────────────────────────────────────────────┤
 │  👤 Marcus (Site GM)                                                │
-│  What's the risk if we don't do this?                              │
+│  What's the risk if we don't do this?                               │
 ├─────────────────────────────────────────────────────────────────────┤
 │  🤖 MCP Sentinel                                                    │
-│  Current firmware has 3 known CVEs. Vendor support ends in 60 days.│
-│  Risk of delayed upgrade: MEDIUM-HIGH                              │
+│  Current firmware has 3 known CVEs. Vendor support ends in 60 days. │
+│  Risk of delayed upgrade: MEDIUM-HIGH                               │
 ├─────────────────────────────────────────────────────────────────────┤
 │  👤 Marcus (Site GM)                                                │
 │  Approved ✅. Adding @ryker from HR.                                │
-│  @ryker - can you shift the Saturday morning crew to start at 7:30?│
+│  @ryker - can you shift the Saturday morning crew to start at 7:30? │
 ├─────────────────────────────────────────────────────────────────────┤
 │  👤 Ryker (HR Manager)                                              │
-│  Done. Updated the schedule. You're clear for 5-7 AM.              │
+│  Done. Updated the schedule. You're clear for 5-7 AM.               │
 ├─────────────────────────────────────────────────────────────────────┤
 │  👤 Chris (IT Manager)                                              │
 │  Approved ✅                                                        │
 ├─────────────────────────────────────────────────────────────────────┤
 │  🤖 MCP Sentinel                                                    │
-│  All approvals received. Change scheduled for Sat 5:00 AM CST.     │
-│  Notifications will be sent 24hr and 1hr before maintenance.       │
+│  All approvals received. Change scheduled for Sat 5:00 AM CST.      │
+│  Notifications will be sent 24hr and 1hr before maintenance.        │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -181,7 +182,7 @@ This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                              MCP Sentinel                                   │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────────────┐  │
-│  │ Topology Engine │  │ Template Library │  │ Deployment Orchestrator   │  │
+│  │ Topology Engine │  │ Template Library│  │ Deployment Orchestrator     │  │
 │  └─────────────────┘  └─────────────────┘  └─────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────────┘
                                        │
@@ -192,9 +193,9 @@ This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-
 └─────────────────────────────────────────────────────────────────────────────┘
                                        │
                                        ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         Cisco Modeling Labs (CML)                           │
-│                                                                             │
+┌────────────────────────────────────────────────────────────────────────────┐
+│                         Cisco Modeling Labs (CML)                          │
+│                                                                            │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
 │  │ Datacenter   │  │     WAN      │  │  Branch 1    │  │  Branch N    │    │
 │  │  ┌────────┐  │  │  ┌────────┐  │  │  ┌────────┐  │  │  ┌────────┐  │    │
@@ -203,7 +204,7 @@ This project builds upon the excellent [cml-mcp](https://github.com/xorrkaz/cml-
 │  │  │  FW    │  │  │  └────────┘  │  │  │  AP    │  │  │  │  AP    │  │    │
 │  │  └────────┘  │  │              │  │  └────────┘  │  │  └────────┘  │    │
 │  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘    │
-└─────────────────────────────────────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
